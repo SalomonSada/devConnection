@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://salosada:salosada@devconnection.duswu.mongodb.net/<dbname>?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://salosada:salosada@devconnection.duswu.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
 }
