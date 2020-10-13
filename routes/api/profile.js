@@ -118,7 +118,7 @@ router.get('/', async (req, res) => {
 });
 
 // @route   GET api/profile/user/:user_id
-// @desc    Get all profiles
+// @desc    Get profile by ID
 // @access  Public
 router.get('/user/:user_id', async (req, res) => {
   try {
@@ -161,18 +161,48 @@ router.delete('/', auth, async (req, res) => {
 // @desc    Add profile expirience
 // @access  Private
 router.put(
-  '/expirience',
+  '/experience',
   [
     auth,
     [
-      check('tittle', 'Tittle is required').not().isEmpty(),
+      check('title', 'Tittle is required').not().isEmpty(),
       check('company', 'Company is required').not().isEmpty(),
-      check('from', 'From is required').not().isEmpty(),
+      check('from', 'From date is required').not().isEmpty(),
     ],
   ],
   async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+    // Build expirience object
+    const newExp = {
+      title,
+      company,
+      location,
+      from,
+      to,
+      current,
+      description,
+    };
     try {
-      const expirience = await Profile.findByIdAndUpdate({ user: req.user.id });
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.experience.unshift(newExp);
+
+      await profile.save();
+
+      res.json(profile);
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server Error');
