@@ -157,4 +157,27 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
+// @route   PUT api/profile/expirience
+// @desc    Add profile expirience
+// @access  Private
+router.put(
+  '/expirience',
+  [
+    auth,
+    [
+      check('tittle', 'Tittle is required').not().isEmpty(),
+      check('company', 'Company is required').not().isEmpty(),
+      check('from', 'From is required').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    try {
+      const expirience = await Profile.findByIdAndUpdate({ user: req.user.id });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 module.exports = router;
