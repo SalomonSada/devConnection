@@ -136,7 +136,7 @@ router.get('/user/:user_id', async (req, res) => {
     if (err.kind === 'ObjectId') {
       return res.status(400).json({ msg: 'Profile not found' });
     }
-    res.status(500).send('Server Error'); 
+    res.status(500).send('Server Error');
   }
 });
 
@@ -236,10 +236,6 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
 // @desc    Update experience from profile
 // @access  Private
 router.put('/experience/:exp_id', auth, async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
   const { title, company, location, from, to, current, description } = req.body;
   try {
     const profile = await Profile.findOne({ user: req.user.id });
@@ -346,10 +342,6 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @desc    Update education from profile
 // @access  Private
 router.put('/education/:edu_id', auth, async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
   const {
     school,
     degree,
