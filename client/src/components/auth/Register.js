@@ -24,7 +24,7 @@ const Register = ({ setAlert, register }) => {
     else {
       register({ name, email, password });
     }
-  };
+  }; 
 
   return (
     <Fragment>
