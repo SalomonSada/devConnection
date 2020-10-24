@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setAlert } from '../../actions/alert';
+//import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-const Login = ({ setAlert }) => {
+const Login = ({ login }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,10 +18,7 @@ const Login = ({ setAlert }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== email) setAlert('Wrong Credentials', 'danger');
-    else {
-      console.log(formData);
-    }
+    login(email, password);
   };
 
   return (
@@ -60,7 +58,7 @@ const Login = ({ setAlert }) => {
 };
 
 Login.propTypes = {
-  setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Login);
+export default connect(null, { login })(Login);
