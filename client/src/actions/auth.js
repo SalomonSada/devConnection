@@ -17,14 +17,13 @@ export const loadUser = () => async (dispatch) => {
   }
 
   try {
-    const res = await axios.get('api/auth', null, {
-      Headers: { 'x-auth-token': localStorage.token },
-    });
+    const res = await axios.get('api/auth');
 
     dispatch({
-      user: USER_LOADED,
+      type: USER_LOADED,
       payload: res.data,
     });
+    console.log(res.data);
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
