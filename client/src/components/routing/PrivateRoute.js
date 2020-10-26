@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-
 const PrivateRoute = ({
   component: Component,
   auth: { isAuthenticated, loading },
-  ...rest
+  ...rest //https://stackoverflow.com/questions/43484302/what-does-it-mean-rest-in-react-jsx
 }) => (
   <Route
     {...rest}

@@ -15,8 +15,8 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
       </li>
       <li>
         <Link to="/dashboard">
-          <i classNames="fas fa-user"></i>{' '}
-          <span classNames="hide-sm">Dashboard</span>
+          <i className="fas fa-user"></i>{' '}
+          <span className="hide-sm">Dashboard</span>
         </Link>
       </li>
       <li>
@@ -44,7 +44,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
   return (
     <nav className="navbar bg-dark">
       <h1>
-        <Link to="/">
+        <Link to="/dashboard">
           <i className="fas fa-code"></i> DevConnector
         </Link>
       </h1>
