@@ -38,7 +38,7 @@ const EditProfile = ({
       status: loading || !profile.status ? '' : profile.status,
       githubusername:
         loading || !profile.githubusername ? '' : profile.githubusername,
-      skills: loading || !profile.skills ? '' : profile.skills,
+      skills: loading || !profile.skills ? '' : profile.skills.join(','), // https://www.w3schools.com/jsref/jsref_join.asp  in this case: transform the skill's arrays from many strings to a single string in order to pass it
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       facebook: loading || !profile.social ? '' : profile.social.facebook,
       twitter: loading || !profile.social ? '' : profile.social.twitter,
@@ -237,9 +237,9 @@ const EditProfile = ({
         )}
 
         <input type="submit" className="btn btn-primary my-1" value="Submit" />
-        <a className="btn btn-light my-1" href="dashboard.html">
+        <Link className="btn btn-light my-1" to="/dashboard">
           Go Back
-        </a>
+        </Link>
       </form>
     </Fragment>
   );
