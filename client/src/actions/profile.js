@@ -1,7 +1,13 @@
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  UPDATE_PROFILE,
+  DELETE_ACCOUNT,
+  CLEAR_PROFILE,
+} from './types';
 
 // Get current users ptrofile
 export const getCurrentProfile = () => async (dispatch) => {
@@ -102,5 +108,71 @@ export const addEducation = (formData, history) => async (dispatch) => {
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+  }
+};
+
+// Delete experience
+export const deleteExperience = (id) => async (dispatch) => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      const res = await axios.delete(`/api/profile/experience/${id}`);
+
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data,
+      });
+
+      dispatch(setAlert('Experience Removed', 'danger'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  }
+};
+
+// Delete Education
+export const deleteEducation = (id) => async (dispatch) => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      const res = await axios.delete(`/api/profile/education/${id}`);
+
+      dispatch({
+        type: UPDATE_PROFILE,
+        payload: res.data,
+      });
+
+      dispatch(setAlert('Education Removed', 'danger'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
+  }
+};
+
+// Delete Account & Profile
+export const deleteAccount = () => async (dispatch) => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      const res = await axios.delete('/api/profile');
+
+      dispatch({
+        type: DELETE_ACCOUNT,
+      });
+
+      dispatch({
+        type: CLEAR_PROFILE,
+      });
+
+      dispatch(setAlert('Your account has been permanently deleted', 'dark'));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
   }
 };
