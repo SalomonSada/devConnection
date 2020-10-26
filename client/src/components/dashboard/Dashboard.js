@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import { getCurrentProfile } from '../../actions/profile';
-import DashboardActions from './DashboardActions';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -25,7 +24,18 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <Fragment>
-          <DashboardActions />
+          <div className="dash-buttons">
+            <Link to="/edit-profile" className="btn ">
+              <i className="fas fa-user-circle text-primary"></i> Edit Profile
+            </Link>
+            <Link to="/add-experience" className="btn">
+              <i className="fab fa-black-tie text-primary"></i> Add Experience
+            </Link>
+            <Link to="/add-education" className="btn">
+              <i className="fas fa-graduation-cap text-primary"></i> Add
+              Education
+            </Link>
+          </div>{' '}
         </Fragment>
       ) : (
         <Fragment>
