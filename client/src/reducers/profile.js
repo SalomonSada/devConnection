@@ -1,9 +1,11 @@
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
-  DELETE_ACCOUNT,
+  GET_REPOS,
+  //DELETE_ACCOUNT,
 } from '../actions/types';
 
 const initialState = {
@@ -25,7 +27,13 @@ export default function profile(state = initialState, action) {
         profile: payload,
         loading: false,
       };
-      break;
+
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false,
+      };
 
     case PROFILE_ERROR:
       return {
@@ -33,7 +41,6 @@ export default function profile(state = initialState, action) {
         error: payload,
         loading: false,
       };
-      break;
 
     case CLEAR_PROFILE:
       return {
@@ -42,9 +49,15 @@ export default function profile(state = initialState, action) {
         repos: [],
         loading: false,
       };
-      break;
+
+    case GET_REPOS:
+      return {
+        ...state,
+        repos: payload,
+        loading: false,
+      };
+
     default:
       return state;
-      break;
   }
 }
