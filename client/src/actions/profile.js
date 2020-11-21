@@ -9,9 +9,10 @@ import {
   UPDATE_PROFILE,
   DELETE_ACCOUNT,
   CLEAR_PROFILE,
+  NO_REPOS,
 } from './types';
 
-// Get current users ptrofile
+// Get current users profile
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');
@@ -50,7 +51,7 @@ export const getAllProfiles = () => async (dispatch) => {
 export const getProfileById = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
-    console.log('::::', res);
+    // console.log('::::', res);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -67,14 +68,14 @@ export const getProfileById = (userId) => async (dispatch) => {
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await axios.get(`api/profile/github/${username}`);
-
+    console.log(':::', res);
     dispatch({
       type: GET_REPOS,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: PROFILE_ERROR,
+      type: NO_REPOS,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

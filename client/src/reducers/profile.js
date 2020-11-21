@@ -5,6 +5,7 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
   GET_REPOS,
+  NO_REPOS,
   //DELETE_ACCOUNT,
 } from '../actions/types';
 
@@ -55,6 +56,12 @@ export default function profile(state = initialState, action) {
         ...state,
         repos: payload,
         loading: false,
+      };
+
+    case NO_REPOS:
+      return {
+        ...state,
+        repos: [],
       };
 
     default:
