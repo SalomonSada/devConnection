@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getGithubRepos } from '../../actions/profile';
@@ -7,7 +7,7 @@ import Spinner from '../layout/Spinner';
 const ProfileGithub = ({ username, getGithubRepos, repos }) => {
   useEffect(() => {
     getGithubRepos(username);
-  }, [getGithubRepos]);
+  }, [getGithubRepos, username]);
 
   return (
     <div className="profile-github">
@@ -16,10 +16,10 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
         <i className="fab fa-github"></i> Github Repos
       </h2>
       {repos.length === 0 ? (
-        <div>
-          <h1>{username} is not a valid github username</h1>
-          <Spinner />{' '}
-        </div>
+        <Fragment>
+          <h1>"{username}" is not a valid github username</h1>
+          <Spinner /> {/* maybe should remove this Spinner later */}
+        </Fragment>
       ) : (
         repos.map((repo) => (
           <div key={repo._id} class="repo bg-white my-1 p-1">
