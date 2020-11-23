@@ -1,8 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://salosada:salosada@devconnection.duswu.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "ab0de777",
-    "githubClientId": "9f9f3954932813efec78",
-    "githubSecret": "dbfa50975348534ec1c7005817572556b3809460",
-    "githubToken": "b7b96132502acebe9f1fe21c84e5ca38e69c1939"
-  }
-  
