@@ -20,3 +20,14 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+/*  
+defualt.json
+{
+  "mongoURI": ????
+  "jwtSecret": ????
+  "githubClientId": ????
+  "githubSecret": ????
+  "githubToken": ????
+}
+ */

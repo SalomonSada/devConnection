@@ -167,7 +167,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
 // @route   PUT api/posts/comment/:id
 // @desc    Comment on a post
 // @access  Private
-router.put(
+router.post(
   '/comment/:id',
   [auth, [check('text', 'Text is required').not().isEmpty()]],
   async (req, res) => {

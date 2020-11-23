@@ -22,7 +22,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
         </Fragment>
       ) : (
         repos.map((repo) => (
-          <div key={repo._id} class="repo bg-white my-1 p-1">
+          <div key={repo.id} className="repo bg-white my-1 p-1">
             <div>
               <h4>
                 <a
@@ -38,13 +38,13 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
 
             <div>
               <ul>
-                <li class="badge badge-primary">
+                <li className="badge badge-primary">
                   Starts: {repo.startgazers_count}
                 </li>
-                <li class="badge badge-dark">
+                <li className="badge badge-dark">
                   Watchers: {repo.watchers_count}
                 </li>
-                <li class="badge badge-light">Forks: {repo.forks_count}</li>
+                <li className="badge badge-light">Forks: {repo.forks_count}</li>
               </ul>
             </div>
           </div>
